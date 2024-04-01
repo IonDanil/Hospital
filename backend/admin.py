@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django import forms
 
-from .models import Specialization, Doctor, Service, Visit, Patient
+from .models import Specialization, Doctor, Service, Visit, Patient, Schedule
 
 
 # 9 Урок домашка > 10 Урок практика
@@ -23,3 +23,4 @@ admin.site.register(Specialization)
 admin.site.register(Service)
 admin.site.register(Visit)
 admin.site.register(Patient)
+admin.site.register(Schedule)

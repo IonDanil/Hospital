@@ -1,11 +1,33 @@
 from django.urls import path
 from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshView)
-from .views import DoctorView, ServiceView, VisitView, PatientView
-
+from .views import DoctorView, ServiceView, VisitView, PatientView, AnalyticsView, ScheduleView
 
 urlpatterns = [
+    path('schedule/',
+        ScheduleView.as_view({
+            'get': 'list',
+            'post': 'create'
+        })
+    ),
     path(
-        'patient/',
+        'schedule/<int:id>/',
+        ScheduleView.as_view({
+            'get': 'retrieve',
+            'put': 'update',
+            'delete': 'destroy'
+        })
+    ),
+    path('visit/<int:id>/rating/',
+        VisitView.as_view({
+            'put': 'set_rating'
+        })
+    ),
+    path('analytics/',
+         AnalyticsView.as_view({
+             'get': 'get_analytics'
+         })
+    ),
+    path('patient/',
         PatientView.as_view({
             'get': 'list',
             'post': 'create'

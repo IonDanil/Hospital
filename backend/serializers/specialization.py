@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from hospital.backend.models import Specialization
+from backend.models import Specialization
 
 
 # 9 Урок домашка > 10 Урок практика

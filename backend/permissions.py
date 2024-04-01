@@ -38,10 +38,10 @@ class HasPermissionByAuthentificatedUserRole(permissions.BasePermission):
     """
     def has_permission(self, request, view):
         if request.user and request.user.is_authenticated:
-            if len(view.action_permissions) == 0:
+            if not view.action_permissions:
                 return True
-            for permissions in view.action_permissions:
-                if has_perm(permissions, request.user):
+            for perm in view.action_permissions:
+                if has_perm(perm, request.user):
                     return True
         return False
 
@@ -49,6 +49,7 @@ class HasPermissionByAuthentificatedUserRole(permissions.BasePermission):
 def has_perm(perm, user):
     print(get_user_permissons(user))
     return user.is_active and perm in get_user_permissons(user)
+
 def get_user_permissons(user):
     if user.is_superuser:
         return Permission.objects.values_list('codename', flat=True)
